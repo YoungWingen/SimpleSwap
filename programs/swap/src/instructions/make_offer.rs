@@ -1,3 +1,8 @@
+/// # Make Offer
+/// 
+/// Make an offer to swap tokens.
+/// first we transfer the tokens to the vault
+/// then we save the offer
 use anchor_lang::prelude::*;
 use anchor_spl::{
     associated_token::AssociatedToken,
@@ -8,9 +13,12 @@ use crate::{Offer, ANCHOR_DISCRIMINATOR};
 
 use super::transfer_tokens;
 
+/// the accounts struct for the make_offer instruction
+/// 
 #[derive(Accounts)]
 #[instruction(id: u64)]
 pub struct MakeOffer<'info> {
+    // 
     #[account(mut)]
     pub maker: Signer<'info>,
 
